@@ -17,9 +17,9 @@ class _CoreNavigationPageState extends State<NavigationHomePage> {
   int _selectedIndex = 0;
   bool _visibleAppBar = true;
 
-  List<Widget> _pages = [
+  final List<Widget> _pages = [
     const MovieHomePage(),
-    TVHomePage(),
+    const TVHomePage(),
     Container(),
   ];
 
@@ -62,7 +62,7 @@ class _CoreNavigationPageState extends State<NavigationHomePage> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: AppColors.primary,
-        onTap: (value) => _onItemTapped(value),
+        onTap: _onItemTapped,
       ),
       appBar: _visibleAppBar
           ? AppBar(

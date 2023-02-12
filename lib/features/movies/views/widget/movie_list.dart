@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/widgets/app_cached_network_image.dart';
 
+/// Movies List Card For Movie Home Page
 class MovieList extends StatelessWidget {
+  /// Instance of [MovieList]
   const MovieList({super.key});
 
   @override
