@@ -21,6 +21,7 @@ dependencies:
   very_good_analysis: ^4.0.0+1
   flutter_animate: ^3.1.0
   cached_network_image: ^3.2.3
+  build_runner: ^2.3.3
   
 
 dev_dependencies:
