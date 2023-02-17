@@ -12,17 +12,17 @@ class MovieModel with _$MovieModel {
   const factory MovieModel({
     bool? adult,
     @JsonKey(name: 'backdrop_path') String? backdropPath,
-    List<int>? genreIds,
+    @JsonKey(name: 'genre_ids') List<int>? genreIds,
     int? id,
-    String? originalTitle,
+    @JsonKey(name: 'original_title') String? originalTitle,
     String? overview,
     double? popularity,
     @JsonKey(name: 'poster_path') String? posterPath,
-    DateTime? releaseDate,
+    @JsonKey(name: 'release_date') DateTime? releaseDate,
     String? title,
     bool? video,
-    double? voteAverage,
-    int? voteCount,
+    @JsonKey(name: 'vote_average') double? voteAverage,
+    @JsonKey(name: 'vote_count') int? voteCount,
   }) = _MovieModel;
 
   /// Creates a new instance of [MovieModel] from parsed raw data
