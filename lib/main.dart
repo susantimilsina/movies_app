@@ -14,7 +14,7 @@ void main() {
       // Hive-specific initialization
       await Hive.initFlutter();
       final StorageService initializedStorageService =
-          HiveStorageService('now_playing');
+          HiveStorageService('NOVA_APP');
       await initializedStorageService.init();
 
       runApp(

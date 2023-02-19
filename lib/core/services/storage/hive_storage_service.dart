@@ -17,7 +17,7 @@ class HiveStorageService implements StorageService {
   String hiveBoxName = '';
 
   /// Opens a Hive box by its name
-  Future<void> openBox([String boxName = 'now_playing']) async {
+  Future<void> openBox([String boxName = 'NOVA_APP']) async {
     hiveBox = await Hive.openBox<dynamic>(boxName);
   }
 
