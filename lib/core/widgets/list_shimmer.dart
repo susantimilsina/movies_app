@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/core/widgets/shimmer.dart';
+import 'package:movies_app/core/widgets/item_shimmer.dart';
 
 /// Widget used for a List shimmer effect
 class ListShimmer extends StatelessWidget {
@@ -24,9 +24,7 @@ class ListShimmer extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Container(
           padding: const EdgeInsets.all(8),
-          child: Shimmer(
-            height: 190,
-            width: 120,
+          child: ItemShimmer(
             minOpacity: minOpacity,
             maxOpacity: maxOpacity,
           ),
