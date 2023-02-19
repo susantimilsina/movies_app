@@ -5,7 +5,7 @@ import 'package:movies_app/splash_page.dart';
 @MaterialAutoRouter(
   routes: [
     MaterialRoute(page: SplashPage, initial: true),
-    MaterialRoute(page: NavigationHomePage, path: '/navigation-home'),
+    MaterialRoute(page: NavigationHomePage, path: '/navigation-home', initial: false),
   ],
   replaceInRouteName: 'Page,Route',
 )
