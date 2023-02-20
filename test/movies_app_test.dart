@@ -11,6 +11,6 @@ import 'package:movies_app/movies_app.dart';
 void main() {
   testWidgets('Main App Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-     tester.pumpWidget(MoviesApp());
+     await tester.pumpWidget(MoviesApp());
   });
 }

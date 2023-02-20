@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:movies_app/core/configs/configs.dart';
 import 'package:movies_app/core/configs/enums/image_size.dart';
 
