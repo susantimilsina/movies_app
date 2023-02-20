@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// Movie list
 ///
 /// Accessed in AppBar to scroll to top
-final movieScrollControllerProvider = Provider<ScrollController>((ref) {
+final movieScrollControllerProvider =
+    Provider.autoDispose<ScrollController>((ref) {
   final scrollController = ScrollController();
   ref.onDispose(scrollController.dispose);
   return scrollController;

@@ -1,16 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movies_app/core/widgets/error_view.dart';
-import 'package:movies_app/core/widgets/list_item_shimmer.dart';
-import 'package:movies_app/features/movies/enums/movie_page.dart';
-import 'package:movies_app/features/movies/providers/current_movie_provider.dart';
-import 'package:movies_app/features/movies/providers/movie_list_scroll_controller.dart';
 import 'package:movies_app/features/movies/providers/movie_provider.dart';
-import 'package:movies_app/features/movies/providers/see_all_movie_provider.dart';
-import 'package:movies_app/features/movies/providers/see_all_page_provider.dart';
-import 'package:movies_app/features/movies/views/widget/movie_card.dart';
+import 'package:movies_app/features/movies/views/widget/item_grid_builder.dart';
 
 /// See App Movie list of See All Movie Page
 class SeeAllMovieList extends ConsumerWidget {
@@ -19,70 +10,60 @@ class SeeAllMovieList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final movieCount = ref.watch(countProvider);
-    final scrollController = ref.watch(movieScrollControllerProvider);
-    final seeAllPageStatus = ref.watch(seeAllPageStatusProvider);
+    final state = ref.watch(itemsProvider);
 
-    return movieCount.when(
-      loading: () => const ListItemShimmer(),
-      data: (int count) {
-        return GridView.builder(
-          controller: scrollController,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            // maxCrossAxisExtent: 200,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20, crossAxisCount: 4,
-          ),
-          itemCount: count,
-          itemBuilder: (BuildContext ctx, index) {
-            final currentMovieIndex = ref
-                .watch(
-                  seeAllPageStatus == MoviePage.nowPlaying
-                      ? paginatedNowPlayingMovieProvider(index)
-                      : seeAllPageStatus == MoviePage.topRated
-                          ? paginatedTopratedMovieProvider(index)
-                          : paginatedPopularMovieProvider(index),
-                )
-                .whenData((pageData) => pageData.results[index % 20]);
-
-            return ProviderScope(
-              overrides: [
-                currentMovieProvider.overrideWithValue(currentMovieIndex)
-              ],
-              child: const MovieCard(),
-            );
-          },
-        );
-        // return ListView.builder(
-        //   controller: scrollController,
-        //   itemCount: count,
-        //   itemExtent: 110,
-        //   itemBuilder: (context, index) {
-        //     final currentMovieIndex = ref
-        //         .watch(
-        //           seeAllPageStatus == MoviePage.nowPlaying
-        //               ? paginatedNowPlayingMovieProvider(index)
-        //               : seeAllPageStatus == MoviePage.topRated
-        //                   ? paginatedTopratedMovieProvider(index)
-        //                   : paginatedPopularMovieProvider(index),
-        //         )
-        //         .whenData((pageData) => pageData.results[index % 20]);
-
-        //     return ProviderScope(
-        //       overrides: [
-        //         currentMovieProvider.overrideWithValue(currentMovieIndex)
-        //       ],
-        //       child: const MovieCard(),
-        //     );
-        //   },
-        // );
+    return state.when(
+      data: (items) {
+        return items.isEmpty
+            ? SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        ref.read(itemsProvider.notifier).fetchFirstBatch();
+                      },
+                      icon: const Icon(Icons.replay),
+                    ),
+                    const Chip(
+                      label: Text('No items Found!'),
+                    ),
+                  ],
+                ),
+              )
+            : ItemsGridBuilder(
+                items: items,
+              );
       },
-      error: (Object error, StackTrace? stackTrace) {
-        log('Error fetching movie List');
-        log(error.toString());
-        log(stackTrace.toString());
-        return const ErrorView();
+      loading: () => const SliverToBoxAdapter(
+        child: Center(child: CircularProgressIndicator()),
+      ),
+      error: (e, stk) => SliverToBoxAdapter(
+        child: Center(
+          child: Column(
+            children: const [
+              Icon(Icons.info),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Something Went Wrong!',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      onGoingLoading: (items) {
+        return ItemsGridBuilder(
+          items: items,
+        );
+      },
+      onGoingError: (items, e, stk) {
+        return ItemsGridBuilder(
+          items: items,
+        );
       },
     );
   }

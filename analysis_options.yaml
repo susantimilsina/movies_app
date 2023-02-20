@@ -6,7 +6,7 @@ linter:
     flutter_style_todos: false
     avoid_redundant_argument_values: false
     sort_pub_dependencies: false
-# analyzer:
+analyzer:
 #   errors:
 #     missing_return: error
 #     must_be_immutable: error
@@ -15,9 +15,9 @@ linter:
 #     parameter_assignments: error
 #     sort_unnamed_constructors_first: ignore
 #     sort_pub_dependencies: ignore
-#   exclude:
-#     - "**/*.g.dart"
-#     - "**/*.freezed.dart"
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
 
 # linter:
 #   rules:

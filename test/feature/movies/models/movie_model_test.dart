@@ -1,5 +1,6 @@
-import 'dart:convert';
+// ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movies_app/features/movies/models/movie_model.dart';
 
@@ -22,21 +23,22 @@ void main() {
     'vote_count': 9
   };
 
-  final exampleMovie = MovieModel(
-      adult: false,
-      backdropPath: '/pketzKFjq5TERXoXFM3L0OYRCLe.jpg',
-      genreIds: [16, 10751],
-      id: 599019,
-      originalTitle: 'Большое путешествие.Специальная доставка',
-      overview:
-          'It has been a year since Mic Mic and Oscar returned from their incredible adventure.And now,after a diabolical plan by Vulture to sabotage the delivery of the Grizzly cub to his opponent in the American presidential elections,Mic Mic,Oscar,Panda teenager and Stork set off on another great adventure as they ride a zeppelin toreturn little Grizzly to its rightful parents and save the American elections and the whole continent from an erupting volcano.',
-      popularity: 652.507,
-      posterPath: '/dabXVfrAFfhDte8XVemom3mTJog.jpg',
-      // releaseDate: DateTime(2022, 10, 07),
-      title: 'Big Trip 2: Special Delivery',
-      video: false,
-      voteAverage: 6.4,
-      voteCount: 9);
+  const exampleMovie = MovieModel(
+    adult: false,
+    backdropPath: '/pketzKFjq5TERXoXFM3L0OYRCLe.jpg',
+    genreIds: [16, 10751],
+    id: 599019,
+    originalTitle: 'Большое путешествие.Специальная доставка',
+    overview:
+        'It has been a year since Mic Mic and Oscar returned from their incredible adventure.And now,after a diabolical plan by Vulture to sabotage the delivery of the Grizzly cub to his opponent in the American presidential elections,Mic Mic,Oscar,Panda teenager and Stork set off on another great adventure as they ride a zeppelin toreturn little Grizzly to its rightful parents and save the American elections and the whole continent from an erupting volcano.',
+    popularity: 652.507,
+    posterPath: '/dabXVfrAFfhDte8XVemom3mTJog.jpg',
+    // releaseDate: DateTime(2022, 10, 07),
+    title: 'Big Trip 2: Special Delivery',
+    video: false,
+    voteAverage: 6.4,
+    voteCount: 9,
+  );
 
   test('can parse data fromJson', () {
     expect(MovieModel.fromJson(rawExampleMovie), equals(exampleMovie));

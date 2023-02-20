@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movies_app/features/movies/models/movie_model.dart';
-import 'package:movies_app/features/movies/providers/current_movie_provider.dart';
 import 'package:movies_app/features/movies/views/widget/movie_card.dart';
 
 /// Movies List Card For Movie Home Page
@@ -20,12 +18,7 @@ class MovieList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           final singleMovie = movieList[index];
-          return ProviderScope(
-            overrides: [
-              currentMovieProvider.overrideWithValue(AsyncData(singleMovie))
-            ],
-            child: const MovieCard(),
-          );
+          return MovieCard(singleMovie: singleMovie,);
         },
         itemCount: movieList.length,
       ),

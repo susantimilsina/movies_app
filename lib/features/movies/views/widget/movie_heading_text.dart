@@ -31,6 +31,7 @@ class MovieHeadingText extends ConsumerWidget {
         InkWell(
           onTap: () {
             ref.read(seeAllPageStatusProvider.notifier).changePage(moviePage);
+            // ref.invalidate(itemsProvider);
             context.router.push(const SeeAllMovieRoute());
           },
           child: Padding(
