@@ -19,9 +19,9 @@ class MovieHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final nowPlayingMovieProvider =
-        ref.watch(paginatedNowPlayingMovieProvider(1));
-    final popularMovieProvider = ref.watch(paginatedPopularMovieProvider(1));
-    final topratedMovieProvider = ref.watch(paginatedTopratedMovieProvider(1));
+        ref.watch(paginatedNowPlayingMovieProvider(0));
+    final popularMovieProvider = ref.watch(paginatedPopularMovieProvider(0));
+    final topratedMovieProvider = ref.watch(paginatedTopratedMovieProvider(0));
     return Padding(
       padding: const EdgeInsets.all(8),
       child: SingleChildScrollView(

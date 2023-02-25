@@ -8,6 +8,18 @@ import 'package:movies_app/features/pagination/providers/pagination_provider.dar
 import 'package:movies_app/features/pagination/state/pagination_state.dart';
 
 /// See All providers with respect to
+/// The PaginatedResponse class contains information about the total number of
+/// pages and the total results in all pages along with a list of the
+/// provided type
+///
+/// An example response from the API for any page looks like this:
+/// {
+///   "page": 1,
+///   "results": [], // list of 20 items
+///   "total_pages": 500,
+///   "total_results": 10000 // Value taken by this provider
+/// }
+///
 final itemsProvider = StateNotifierProvider.autoDispose<
     PaginationProvider<MovieModel>, PaginationState<MovieModel>>((ref) {
   return PaginationProvider(

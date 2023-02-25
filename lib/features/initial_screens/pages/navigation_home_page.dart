@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/configs/app_icon_data.dart';
+import 'package:movies_app/core/configs/app_icons.dart';
 import 'package:movies_app/core/configs/styles/app_colors.dart';
 import 'package:movies_app/core/configs/styles/spacing_size.dart';
 import 'package:movies_app/features/movies/views/pages/movie_home_page.dart';
@@ -68,13 +70,12 @@ class _CoreNavigationPageState extends State<NavigationHomePage> {
           ? AppBar(
               title: Row(
                 children: [
-                  Image.asset(
-                    'assets/images/netflix.png',
-                    width: 25,
-                    fit: BoxFit.cover,
+                  const AppIcon(
+                    icon: AppIcons.netflixIcon,
+                    size: 25,
                   ),
                   Spacing.sizedBoxW_06(),
-                  const Text('Nova Movie')
+                  const Text('Nova')
                 ],
               ),
               actions: [

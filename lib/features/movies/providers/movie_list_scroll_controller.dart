@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/// Scroll controller attached to the [ListView] widget of the
+/// Scroll controller attached to the [GridView] widget of the
 /// Movie list
 ///
-/// Accessed in AppBar to scroll to top
 final movieScrollControllerProvider =
     Provider.autoDispose<ScrollController>((ref) {
   final scrollController = ScrollController();

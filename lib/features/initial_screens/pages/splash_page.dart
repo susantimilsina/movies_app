@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
     // ignore: inference_failure_on_instance_creation
     Future.delayed(const Duration(seconds: 3)).then((value) {
       context.router.replace(
-        const NavigationHomeRoute(),
+        const IntroRoute(),
       );
     });
   }

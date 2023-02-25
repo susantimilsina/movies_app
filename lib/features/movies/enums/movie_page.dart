@@ -9,17 +9,6 @@ enum MoviePage {
   /// Top Rated Movie Value
   topRated;
 
-  /// API Path value from movie value
-  String get toApiStr {
-    switch (this) {
-      case MoviePage.nowPlaying:
-        return 'now_playing';
-      case MoviePage.popular:
-        return 'popular';
-      case MoviePage.topRated:
-        return 'top_rated';
-    }
-  }
 
   /// String value from movie value
   String get toStr {
