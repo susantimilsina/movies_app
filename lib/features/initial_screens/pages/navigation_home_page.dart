@@ -75,7 +75,10 @@ class _CoreNavigationPageState extends State<NavigationHomePage> {
                     size: 25,
                   ),
                   Spacing.sizedBoxW_06(),
-                  const Text('Nova')
+                  Text(
+                    'Nova',
+                    style: Theme.of(context).textTheme.displayMedium,
+                  )
                 ],
               ),
               actions: [
@@ -83,7 +86,10 @@ class _CoreNavigationPageState extends State<NavigationHomePage> {
                   onPressed: () {
                     // _onSearchTapped(_selectedIndex);
                   },
-                  icon: const Icon(Icons.search),
+                  icon: Icon(
+                    Icons.search,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
                 )
               ],
             )

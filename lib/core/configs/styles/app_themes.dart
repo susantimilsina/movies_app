@@ -22,7 +22,8 @@ class AppThemes {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         background: AppColors.black,
-      ).copyWith(background: AppColors.black),
+        onSecondary: AppColors.white,
+      ),
     );
   }
 
@@ -36,6 +37,8 @@ class AppThemes {
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
+        background: AppColors.white,
+        onSecondary: AppColors.black,
       ),
       appBarTheme: const AppBarTheme(
         elevation: 0,
@@ -49,15 +52,15 @@ class AppThemes {
 class TextThemes {
   /// Main text theme
   static TextTheme get textTheme {
-    return const TextTheme(
-      bodyLarge: AppTextStyles.bodyLg,
-      bodyMedium: AppTextStyles.body,
-      titleMedium: AppTextStyles.bodySm,
-      titleSmall: AppTextStyles.bodyXs,
-      displayLarge: AppTextStyles.h1,
-      displayMedium: AppTextStyles.h2,
-      displaySmall: AppTextStyles.h3,
-      headlineMedium: AppTextStyles.h4,
+    return  TextTheme(
+      bodyLarge: AppTextStyles.bodyLg.copyWith(color: AppColors.black),
+      bodyMedium: AppTextStyles.body.copyWith(color: AppColors.black),
+      titleMedium: AppTextStyles.bodySm.copyWith(color: AppColors.black),
+      titleSmall: AppTextStyles.bodyXs.copyWith(color: AppColors.black),
+      displayLarge: AppTextStyles.h1.copyWith(color: AppColors.black),
+      displayMedium: AppTextStyles.h2.copyWith(color: AppColors.black),
+      displaySmall: AppTextStyles.h3.copyWith(color: AppColors.black),
+      headlineMedium: AppTextStyles.h4.copyWith(color: AppColors.black),
     );
   }
 

@@ -36,6 +36,7 @@ dependencies:
   flutter_svg: ^2.0.2
   smooth_page_indicator: ^1.0.1
   extra_alignments: ^1.0.0+1
+  hooks_riverpod: ^2.3.0
   
 
 dev_dependencies:

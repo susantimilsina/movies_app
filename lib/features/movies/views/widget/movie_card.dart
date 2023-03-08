@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movies_app/core/configs/styles/app_colors.dart';
 import 'package:movies_app/core/utils/tmdb_image_utils.dart';
 import 'package:movies_app/core/widgets/app_cached_network_image.dart';
 import 'package:movies_app/features/movies/models/movie_model.dart';
+import 'package:movies_app/route/app_router.gr.dart';
 
 /// Movie Card For Movie Home Page
 class MovieCard extends ConsumerWidget {
@@ -19,11 +21,14 @@ class MovieCard extends ConsumerWidget {
       padding: const EdgeInsets.all(8),
       child: InkWell(
         onTap: () {
-          // Navigator.pushNamed(
-          //   context,
-          //   MOVIE_DETAIL_ROUTE,
-          //   arguments: movie.id,
-          // );
+          context.router.push(
+            MovieDetailsRoute(
+              movieName: singleMovie.originalTitle ?? '',
+              movieId: singleMovie.id!,
+              backdropPath: singleMovie.backdropPath ?? '',
+              posterPath: singleMovie.posterPath ?? '',
+            ),
+          );
         },
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(16)),

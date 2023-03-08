@@ -66,7 +66,7 @@ class IntroPage extends ConsumerWidget {
 
     void _handleIntroCompletePressed() {
       if (_currentPage.value == pageData.length - 1) {
-        context.router.push(const NavigationHomeRoute());
+        context.router.replaceAll([const NavigationHomeRoute()]);
       }
     }
 
@@ -100,8 +100,8 @@ class IntroPage extends ConsumerWidget {
               scaleX: left ? -1 : 1,
               child: HzGradient(
                 [
-                  AppColors.black.withOpacity(0),
-                  AppColors.black,
+                  Theme.of(context).colorScheme.background.withOpacity(0),
+                  Theme.of(context).colorScheme.background,
                 ],
                 const [0, .2],
               ),
@@ -160,7 +160,7 @@ class IntroPage extends ConsumerWidget {
 
     return Scaffold(
       body: ColoredBox(
-        color: const Color(0xFF1E1B18),
+        color: Theme.of(context).colorScheme.background,
         child: SafeArea(
           child: Stack(
             children: [
@@ -221,7 +221,7 @@ class IntroPage extends ConsumerWidget {
                       child: AppPageIndicator(
                         count: pageData.length,
                         controller: pageController,
-                        color: AppColors.white,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
 
@@ -366,6 +366,7 @@ class _PageImage extends StatelessWidget {
           child: Image.asset(
             '${AppIcons.pathCommon}/intro-mask-${data.mask}.png',
             fit: BoxFit.fill,
+            color: Theme.of(context).colorScheme.background,
           ),
         ),
       ],

@@ -11,7 +11,7 @@ void main() {
   test('fetches paginated now playing movies people', () async {
     const page = 1;
     when(
-      () => mockHttpService.get(
+      () async => mockHttpService.get(
         '${httpPeopleRepository.path}/now_playing',
         queryParameters: <String, dynamic>{
           'page': page,

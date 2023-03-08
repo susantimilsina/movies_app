@@ -16,7 +16,7 @@ class MoviesApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Movies App',
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
       routerDelegate: appRouter.delegate(),
