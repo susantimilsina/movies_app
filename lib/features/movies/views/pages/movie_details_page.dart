@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movies_app/core/utils/app_haptics.dart';
 import 'package:movies_app/features/movies/views/widget/blurred_blackdrop_image.dart';
 import 'package:movies_app/features/movies/views/widget/expanded_app_bar_content.dart';
+import 'package:movies_app/features/movies/views/widget/movie_details_top_bar.dart';
 
 /// Page widget of Movie Details
 class MovieDetailsPage extends HookConsumerWidget {
@@ -37,76 +38,89 @@ class MovieDetailsPage extends HookConsumerWidget {
     final isCollapsed = useState(false);
     final didAddFeedback = useState(false);
 
-    return NotificationListener<ScrollNotification>(
-      onNotification: (notification) {
-        isCollapsed.value = scrollController.hasClients &&
-            scrollController.offset > (expandedBarHeight - collapsedBarHeight);
-        if (isCollapsed.value && !didAddFeedback.value) {
-          AppHaptics.mediumImpact();
-          didAddFeedback.value = true;
-        } else if (!isCollapsed.value) {
-          didAddFeedback.value = false;
-        }
-        return false;
-      },
-      child: Stack(
-        children: [
-          BlurredBackdropImage(
-            backdropPath: posterPath ?? '',
-          ),
-          CustomScrollView(
-            controller: scrollController,
-            slivers: [
-              SliverAppBar(
-                expandedHeight: expandedBarHeight,
-                collapsedHeight: collapsedBarHeight,
-                centerTitle: false,
-                pinned: true,
-                title: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 200),
-                  opacity: isCollapsed.value ? 1 : 0,
-                  child: Text(
-                    movieName,
-                    style: Theme.of(context).textTheme.displayMedium,
+    return Scaffold(
+      body: NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          isCollapsed.value = scrollController.hasClients &&
+              scrollController.offset >
+                  (expandedBarHeight - collapsedBarHeight);
+          if (isCollapsed.value && !didAddFeedback.value) {
+            AppHaptics.mediumImpact();
+            didAddFeedback.value = true;
+          } else if (!isCollapsed.value) {
+            didAddFeedback.value = false;
+          }
+          return false;
+        },
+        child: Stack(
+          children: [
+            BlurredBackdropImage(
+              backdropPath: posterPath ?? '',
+            ),
+            CustomScrollView(
+              controller: scrollController,
+              slivers: [
+                SliverAppBar(
+                  expandedHeight: expandedBarHeight,
+                  collapsedHeight: collapsedBarHeight,
+                  centerTitle: false,
+                  pinned: true,
+                  title: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 200),
+                    opacity: isCollapsed.value ? 1 : 0,
+                    child: Text(
+                      movieName,
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                  ),
+                  elevation: 0,
+                  backgroundColor: isCollapsed.value
+                      ? Theme.of(context).colorScheme.background
+                      : Colors.transparent,
+                  leading: BackButton(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: ExpandedAppBarContent(
+                      backdropPath: backdropPath ?? '',
+                      movieName: movieName,
+                    ),
                   ),
                 ),
-                elevation: 0,
-                backgroundColor: isCollapsed.value
-                    ? Theme.of(context).colorScheme.background
-                    : Colors.transparent,
-                leading: BackButton(
-                  color: Theme.of(context).colorScheme.onSecondary,
-                ),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: ExpandedAppBarContent(
-                    backdropPath: backdropPath ?? '',
-                    movieName: movieName,
-                  ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                      minHeight: MediaQuery.of(context).size.height),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(
-                          15,
+                SliverToBoxAdapter(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.height,
+                    ),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(
+                            15,
+                          ),
+                          topRight: Radius.circular(
+                            15,
+                          ),
                         ),
-                        topRight: Radius.circular(
-                          15,
+                        color: Theme.of(context).colorScheme.background,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            /// Top Chips Bar
+                            MovieDetailsTopBar()
+                          ],
                         ),
                       ),
-                      color: Theme.of(context).colorScheme.background,
                     ),
-                    child: Container(),
                   ),
-                ),
-              )
-            ],
-          ),
-        ],
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
