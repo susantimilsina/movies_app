@@ -85,7 +85,7 @@ class HttpMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<MovieModel> getPersonDetails(
+  Future<MovieModel> getMovieDetails(
     int movieId, {
     bool forceRefresh = false,
   }) {
@@ -97,4 +97,5 @@ class HttpMovieRepository implements MovieRepository {
 
   @override
   String get apiKey => Configs.tmdbAPIKey;
+  
 }

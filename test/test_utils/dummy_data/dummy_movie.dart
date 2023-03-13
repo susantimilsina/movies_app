@@ -15,7 +15,7 @@ class DummyMovie {
           'Queen Ramonda Shuri, M’ Baku,Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’ Challa’ s death.As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.',
       'popularity': 4378.531,
       'poster_path': '/sv1xJUazXeYqALzczSZ3O6nkH75.jpg',
-      'release_date': 2022 - 11 - 09,
+      'release_date': '2022-11-09',
       'title': 'Black Panther: Wakanda Forever',
       'video': false,
       'vote_average': 7.4,
@@ -31,14 +31,14 @@ class DummyMovie {
           'Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left.Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.',
       'popularity': 3204.321,
       'poster_path': '/kuf6dutpsT0vSVehic3EZIqkOBt.jpg',
-      'release_date': 2022 - 12 - 07,
+      'release_date': '2022-12-07',
       'title': 'Puss in Boots: The Last Wish',
       'video': false,
       'vote_average': 8.5,
       'vote_count': 3877
     }
   ];
-  static PaginatedResponse<MovieModel> paginatedPopularPeopleResponse =
+  static PaginatedResponse<MovieModel> paginatedMovieResponse =
       PaginatedResponse<MovieModel>(
     page: 1,
     results: movieList,
@@ -64,7 +64,7 @@ class DummyMovie {
         'Queen Ramonda Shuri, M’ Baku,Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’ Challa’ s death.As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.',
     'popularity': 4378.531,
     'poster_path': '/sv1xJUazXeYqALzczSZ3O6nkH75.jpg',
-    'release_date': 2022 - 11 - 09,
+    'release_date': '2022-11-09',
     'title': 'Black Panther: Wakanda Forever',
     'video': false,
     'vote_average': 7.4,

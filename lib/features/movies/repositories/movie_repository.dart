@@ -45,7 +45,7 @@ abstract class MovieRepository {
   });
 
   /// Request to get a movie details endpoint
-  Future<MovieModel> getPersonDetails(
+  Future<MovieModel> getMovieDetails(
     int movieId, {
     bool forceRefresh = false,
   });
