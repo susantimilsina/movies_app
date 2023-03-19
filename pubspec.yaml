@@ -37,6 +37,7 @@ dependencies:
   smooth_page_indicator: ^1.0.1
   extra_alignments: ^1.0.0+1
   hooks_riverpod: ^2.3.0
+  intl: ^0.18.0
   
 
 dev_dependencies:

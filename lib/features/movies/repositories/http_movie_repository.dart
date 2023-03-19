@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:movies_app/core/configs/configs.dart';
 import 'package:movies_app/core/models/paginated_response.dart';
 import 'package:movies_app/core/services/http/http_service.dart';
@@ -88,8 +91,15 @@ class HttpMovieRepository implements MovieRepository {
   Future<MovieModel> getMovieDetails(
     int movieId, {
     bool forceRefresh = false,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    final responseData = await httpService.get(
+      '$path/$movieId',
+      forceRefresh: forceRefresh,
+      queryParameters: <String, dynamic>{
+        'api_key': apiKey,
+      },
+    );
+    return MovieModel.fromJson(responseData);
   }
 
   @override
@@ -97,5 +107,4 @@ class HttpMovieRepository implements MovieRepository {
 
   @override
   String get apiKey => Configs.tmdbAPIKey;
-  
 }

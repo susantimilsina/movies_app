@@ -24,7 +24,7 @@ class RatingChips extends StatelessWidget {
           percentage: rating / 10,
         ),
         Text(
-          rating.toString(),
+          rating.toStringAsFixed(1),
           style: Theme.of(context)
               .textTheme
               .bodySmall

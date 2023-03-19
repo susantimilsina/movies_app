@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movies_app/core/utils/app_haptics.dart';
 import 'package:movies_app/features/movies/views/widget/blurred_blackdrop_image.dart';
 import 'package:movies_app/features/movies/views/widget/expanded_app_bar_content.dart';
+import 'package:movies_app/features/movies/views/widget/movie_detailed_description.dart';
 import 'package:movies_app/features/movies/views/widget/movie_details_top_bar.dart';
 
 /// Page widget of Movie Details
@@ -68,9 +69,12 @@ class MovieDetailsPage extends HookConsumerWidget {
                   title: AnimatedOpacity(
                     duration: const Duration(milliseconds: 200),
                     opacity: isCollapsed.value ? 1 : 0,
-                    child: Text(
-                      movieName,
-                      style: Theme.of(context).textTheme.displayMedium,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Text(
+                        movieName,
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
                     ),
                   ),
                   elevation: 0,
@@ -87,35 +91,8 @@ class MovieDetailsPage extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: MediaQuery.of(context).size.height,
-                    ),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(
-                            15,
-                          ),
-                          topRight: Radius.circular(
-                            15,
-                          ),
-                        ),
-                        color: Theme.of(context).colorScheme.background,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            /// Top Chips Bar
-                            MovieDetailsTopBar()
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                MovieDetailedDescription(
+                  movieId: movieId,
                 )
               ],
             ),
