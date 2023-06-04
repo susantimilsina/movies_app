@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:movies_app/core/configs/configs.dart';
 import 'package:movies_app/core/models/paginated_response.dart';
 import 'package:movies_app/core/services/http/http_service.dart';
+import 'package:movies_app/core/utils/tmdb_image_utils.dart';
 import 'package:movies_app/features/movies/models/cast.dart';
 import 'package:movies_app/features/movies/models/movie_model.dart';
 import 'package:movies_app/features/movies/repositories/movie_repository.dart';
@@ -112,6 +115,8 @@ class HttpMovieRepository implements MovieRepository {
         'api_key': apiKey,
       },
     );
+
+    log(responseData.toString());
     return (responseData['cast'] as List)
         .map((e) => Cast.fromJson(e as Map<String, dynamic>))
         .toList();

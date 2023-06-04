@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movies_app/core/widgets/app_loader.dart';
@@ -27,6 +29,7 @@ class MovieCastPage extends HookConsumerWidget {
         );
       },
       error: (Object error, StackTrace? stackTrace) {
+        log(error.toString());
         return const ErrorView();
       },
       loading: () {

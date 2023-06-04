@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cast.freezed.dart';
@@ -8,11 +10,11 @@ part 'cast.g.dart';
 class Cast with _$Cast {
     /// Creates a new instance of [Cast]
     const factory Cast({
-        required int gender,
-        required String knownForDepartment,
-        required String originalName,
-        required String profilePath,
-        required String character,
+        int? gender,
+        @JsonKey(name: 'known_for_department')  String? knownForDepartment,
+        @JsonKey(name: 'original_name')  String? originalName,
+        @JsonKey(name: 'profile_path')  String? profilePath,
+        String? character,
     }) = _Cast;
   /// Creates a new instance of [Cast] from parsed raw data
 
