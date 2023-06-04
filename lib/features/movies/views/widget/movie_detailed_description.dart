@@ -1,10 +1,15 @@
 import 'dart:developer';
 
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movies_app/core/configs/styles/app_colors.dart';
+import 'package:movies_app/core/configs/styles/spacing_size.dart';
 import 'package:movies_app/core/widgets/app_loader.dart';
 import 'package:movies_app/core/widgets/error_view.dart';
 import 'package:movies_app/features/movies/providers/movie_detail_provider.dart';
+import 'package:movies_app/features/movies/views/pages/movie_cast_page.dart';
+import 'package:movies_app/features/movies/views/widget/genre_section.dart';
 import 'package:movies_app/features/movies/views/widget/movie_details_top_bar.dart';
 
 /// Custom Scroll View Description for Movie Details
@@ -54,6 +59,27 @@ class MovieDetailedDescription extends ConsumerWidget {
                       status: movie.status,
                       voteAvg: movie.voteAverage,
                     ),
+
+                    Spacing.sizedBoxH_12(),
+
+                    /// Genre Section
+                    GenreSection(
+                      genres: movie.genres,
+                    ),
+                    Spacing.sizedBoxH_08(),
+
+                    /// Movie Description/Overview
+                    ExpandableText(
+                      movie.overview ?? '',
+                      expandText: 'View more',
+                      collapseText: 'View less',
+                      maxLines: 3,
+                      linkColor: AppColors.primary,
+                    ),
+
+                    MovieCastPage(
+                      movieId: movieId,
+                    )
                   ],
                 );
               },

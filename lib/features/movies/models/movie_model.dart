@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movies_app/features/movies/models/genre.dart';
 part 'movie_model.freezed.dart';
 part 'movie_model.g.dart';
 
@@ -23,6 +24,7 @@ class MovieModel with _$MovieModel {
     String? status,
     int? runtime,
     bool? video,
+    List<Genre>? genres,
     @JsonKey(name: 'vote_average') double? voteAverage,
     @JsonKey(name: 'vote_count') int? voteCount,
   }) = _MovieModel;

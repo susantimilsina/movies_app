@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movies_app/core/models/paginated_response.dart';
 import 'package:movies_app/core/services/http/http_service_provider.dart';
+import 'package:movies_app/features/movies/models/cast.dart';
 import 'package:movies_app/features/movies/models/movie_model.dart';
 import 'package:movies_app/features/movies/repositories/http_movie_repository.dart';
 
@@ -46,6 +47,12 @@ abstract class MovieRepository {
 
   /// Request to get a movie details endpoint
   Future<MovieModel> getMovieDetails(
+    int movieId, {
+    bool forceRefresh = false,
+  });
+
+  /// Request to get a movie casts endpoint
+  Future<List<Cast>> getMovieCasts(
     int movieId, {
     bool forceRefresh = false,
   });

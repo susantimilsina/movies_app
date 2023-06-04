@@ -1,9 +1,7 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:movies_app/core/configs/configs.dart';
 import 'package:movies_app/core/models/paginated_response.dart';
 import 'package:movies_app/core/services/http/http_service.dart';
+import 'package:movies_app/features/movies/models/cast.dart';
 import 'package:movies_app/features/movies/models/movie_model.dart';
 import 'package:movies_app/features/movies/repositories/movie_repository.dart';
 
@@ -100,6 +98,23 @@ class HttpMovieRepository implements MovieRepository {
       },
     );
     return MovieModel.fromJson(responseData);
+  }
+
+  @override
+  Future<List<Cast>> getMovieCasts(
+    int movieId, {
+    bool forceRefresh = false,
+  }) async {
+    final responseData = await httpService.get(
+      '$path/$movieId/credits',
+      forceRefresh: forceRefresh,
+      queryParameters: <String, dynamic>{
+        'api_key': apiKey,
+      },
+    );
+    return (responseData['cast'] as List)
+        .map((e) => Cast.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   @override

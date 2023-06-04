@@ -5,7 +5,6 @@ import 'package:movies_app/core/utils/app_haptics.dart';
 import 'package:movies_app/features/movies/views/widget/blurred_blackdrop_image.dart';
 import 'package:movies_app/features/movies/views/widget/expanded_app_bar_content.dart';
 import 'package:movies_app/features/movies/views/widget/movie_detailed_description.dart';
-import 'package:movies_app/features/movies/views/widget/movie_details_top_bar.dart';
 
 /// Page widget of Movie Details
 class MovieDetailsPage extends HookConsumerWidget {
